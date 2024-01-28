@@ -1,8 +1,9 @@
 #Lógica para los requerimientos
 from sqlalchemy.orm import Session
-from models import Categoria, Tarea
-from schemas import CategoriaCreate, TareaCreate, TareaUpdate
+from models import Categoria, Tarea, Usuario
+from schemas import CategoriaCreate, TareaCreate, TareaUpdate, UsuarioCreate
 from fastapi import APIRouter, HTTPException
+from typing import List
 
 #------------------------------------------------------------------
 # C A T E G O R I A S 
@@ -54,5 +55,22 @@ def delete_task(db: Session, tarea_id: int):
     db.commit()
     return {"message": "Tarea eliminada"}
 
-def get_task(db: Session):
-    return db.query(Tarea).all()
+def get_task_by_usuario(db: Session, usuario_id: int) -> List[Tarea]:
+    return db.query(Tarea).filter(Tarea.id_usuario == usuario_id).all()
+
+def get_task_by_id(db: Session, tarea_id: int) -> Tarea:
+    return db.query(Tarea).filter(Tarea.id == tarea_id).first()
+
+#------------------------------------------------------------------
+# U S U A R I O 
+#------------------------------------------------------------------
+
+def get_usuario_by_nombre_usuario(db: Session, nombre_usuario: str):
+    return db.query(Usuario).filter(Usuario.nombre_usuario == nombre_usuario).first()
+
+def crear_usuario(db: Session, usuario: UsuarioCreate):
+    db_usuario = Usuario(nombre_usuario=usuario.nombre_usuario, contrasenia=usuario.contrasenia, imagen_perfil=usuario.imagen_perfil)
+    db.add(db_usuario)
+    db.commit()
+    db.refresh(db_usuario)
+    return db_usuario

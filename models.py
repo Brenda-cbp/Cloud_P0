@@ -1,3 +1,5 @@
+#Creación de la BD
+
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Enum
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -16,7 +18,7 @@ class Usuario(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     nombre_usuario = Column(String)
-    contraseña = Column(String)
+    contrasenia = Column(String)
     imagen_perfil = Column(String)
     tareas = relationship("Tarea", back_populates="usuario")
 

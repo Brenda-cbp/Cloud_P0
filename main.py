@@ -2,9 +2,9 @@ from typing import Union
 
 from fastapi import FastAPI
 from databases import Database
-from database import engine, get_db
+from database import engine
 from models import Base
-from routes import categorias, tareas
+from routes import categorias, tareas, usuarios
 
 app = FastAPI()
 
@@ -12,6 +12,7 @@ app = FastAPI()
 Base.metadata.create_all(bind=engine)
 app.include_router(categorias.router)
 app.include_router(tareas.router)
+app.include_router(usuarios.router)
 
 # @app.get("/")
 # def read_root():
