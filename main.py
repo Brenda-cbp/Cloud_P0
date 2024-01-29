@@ -13,12 +13,3 @@ Base.metadata.create_all(bind=engine)
 app.include_router(categorias.router)
 app.include_router(tareas.router)
 app.include_router(usuarios.router)
-
-# @app.get("/")
-# def read_root():
-#     return {"Hello": "World"}
-
-
-# @app.get("/task/{task_id}")
-# def read_item(task_id: int, q: Union[str, None] = None):
-#     return {"task_id": task_id, "q": q}
