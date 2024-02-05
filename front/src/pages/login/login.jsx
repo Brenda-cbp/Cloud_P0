@@ -20,7 +20,7 @@ function Login() {
         try {
             const data = await login(username, password);
             if (data) {
-                navigate(`/${username}/tareas`);
+                navigate(`/${data.user_id}/tareas`);
             } else {
                 setError('Invalid username or password');
             }

@@ -20,12 +20,21 @@ def delete_category(db: Session, categoria_id: int):
     db_categoria = db.query(Categoria).filter(Categoria.id == categoria_id).first()
     if db_categoria is None:
         raise HTTPException(status_code=404, detail="La categoría no existe")
+    
+    tareas_asociadas = db.query(Tarea).filter(Tarea.id_categoria == categoria_id).all()
+    if tareas_asociadas:
+        raise HTTPException(status_code=400, detail="No se puede eliminar la categoría porque tiene tareas asociadas")
+
     db.delete(db_categoria)
     db.commit()
     return {"message": "Categoría eliminada"}
 
 def get_categories(db: Session):
     return db.query(Categoria).all()
+
+def get_categories_by_name (db: Session, name: str):
+    return db.query(Categoria).filter(Categoria.nombre == name).first()
+
 
 #------------------------------------------------------------------
 # T A R E A S

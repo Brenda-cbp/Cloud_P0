@@ -10,7 +10,7 @@ bearer_scheme = HTTPBearer()
 
 SECRET_KEY = "n4ruljhfflef9494q@lS4WqFZbmD9B9l"
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 120
 
 crypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

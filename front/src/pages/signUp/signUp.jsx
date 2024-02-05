@@ -3,7 +3,8 @@ import "./signUp.css";
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signUp } from '../../services/service'; // Importa la función de inicio de sesión
+import { signUp } from '../../services/service'; 
+import {Link} from "react-router-dom";
 
 function Login() {
     const navigate = useNavigate();
@@ -31,12 +32,13 @@ function Login() {
         <div className="login">
             <h1>Sign Up</h1>
             <form method="post" onSubmit={handleSingUp}>
-                {error && <div className="error">{error}</div>}
+                {error && <div className="error">{error}  <br /> </div> } 
                 <input type="" name="user" placeholder="Usuario" required onChange={(e) => setUsername(e.target.value)} />
                 <input type="password" name="password" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} required />
-                <button type="submit" className="btn btn-primary btn-block btn-large">
-                    Crear cuenta</button>
+                <button type="submit" className="btn btn-primary btn-block btn-large">Crear cuenta</button>
             </form>
+            <Link to="/"> Iniciar sesión </Link>
+
         </div>
     );
 }
