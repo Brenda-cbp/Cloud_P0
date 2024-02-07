@@ -68,6 +68,7 @@ function CrearTarea() {
                     <input type="datetime-local" name="fechaFin" placeholder="Fecha finalización" onChange={(e) => setFechaFin(e.target.value)} required />
                     <h4>Estado</h4>
                     <select value={estadoTarea} onChange={(e) => setEstadoTarea(e.target.value)}>
+                        <option value="">Selecciona un estado</option>
                         <option value="SIN_EMPEZAR">Sin empezar</option>
                         <option value="EMPEZADA">Empezada</option>
                         <option value="FINALIZADA">Finalizada</option>

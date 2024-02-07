@@ -23,4 +23,4 @@ def iniciar_sesion(usuario: UsuarioIniciarSesion, db: Session = Depends(get_db))
     if not db_usuario or not auth.verificar_contrasenia(usuario.contrasenia, db_usuario.contrasenia):
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
     token = auth.crear_token_acceso(data={"sub": db_usuario.nombre_usuario})
-    return JSONResponse(content={"access_token": token, "token_type": "bearer", "user_id": db_usuario.id})
+    return JSONResponse(content={"access_token": token, "token_type": "bearer", "user_id": db_usuario.id, "nombre_usuario": db_usuario.nombre_usuario, "imagen_perfil": db_usuario.imagen_perfil})

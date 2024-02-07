@@ -1,5 +1,5 @@
 import React from 'react';
-import { saveToken, getToken } from './auth';
+import { saveToken, getToken, saveAuthData } from './auth';
 
 const token = getToken(); // Obtiene el token de localStorage
 
@@ -21,7 +21,8 @@ const login = async (username, password) => {
         }
 
         const data = await response.json();
-        saveToken(data.access_token);
+        console.log(data)
+        saveAuthData(data.access_token, data.nombre_usuario, data.imagen_perfil)
         return data; // Retorna los datos del usuario si la solicitud fue exitosa
     } catch (error) {
         throw new Error('Error al iniciar sesión:', error);
