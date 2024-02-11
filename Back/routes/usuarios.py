@@ -13,7 +13,7 @@ def crear_usuario(usuario: UsuarioCreate, db: Session = Depends(get_db)):
     if db_usuario:
         raise HTTPException(status_code=400, detail="El nombre de usuario ya existe")
     if not usuario.imagen_perfil:
-        usuario.imagen_perfil = "imagen_por_defecto.jpg" 
+        usuario.imagen_perfil = "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo.png" 
     usuario.contrasenia= auth.hashear_contrasenia(usuario.contrasenia)
     return crud.crear_usuario(db=db, usuario=usuario)
 

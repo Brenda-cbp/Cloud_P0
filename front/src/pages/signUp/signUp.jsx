@@ -32,7 +32,7 @@ function Login() {
                 reader.readAsDataURL(image);
             } else {
                 // Si no se selecciona ninguna imagen, usa la imagen por defecto
-                const defaultImage = "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo.png";
+                const imageData = "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo.png";
                 const data = await signUp(username, password, imageData);
                     if (!data.detail) {
                         navigate(`/`);
